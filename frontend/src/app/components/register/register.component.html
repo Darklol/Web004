@@ -1,0 +1,64 @@
+<div class="container-lg text-center">
+    <div class="h4 form-header">Sign up</div>
+    <div class="form border border-light rounded p-3" id="registerForm">
+        <form class="data-form" [formGroup]="registerForm">
+            <div class="m-4 p-fluid">
+                <span class="p-float-label m-2">
+                    <input id="username" type="text" pInputText formControlName="username" name="username"
+                           maxlength="20" [(ngModel)]="userToRegister.login">
+                    <label for="username">Username</label>
+                </span>
+                <div class="p-message-error text-danger h6" *ngIf="fieldErrors('username')">
+                    <span *ngIf="fieldErrors('username').required">Username is required</span>
+                    <span *ngIf="fieldErrors('username').maxlength || fieldErrors('username').minlength">
+                        Length of username must be from 4 to 20
+                    </span>
+                    <span *ngIf="fieldErrors('username').pattern && !(fieldErrors('username').maxlength || fieldErrors('username').minlength)">
+                        Use only latin letters, numbers and underscore
+                    </span>
+                </div>
+            </div>
+
+            <div class="m-4 p-fluid">
+                <span class="p-float-label m-2">
+                    <input id="password" type="password" pInputText name="password" maxlength="20"
+                           formControlName="password" [(ngModel)]="userToRegister.hashPass">
+                    <label for="password">Password</label>
+                </span>
+                <div class="p-message-error text-danger h6" *ngIf="fieldErrors('password')">
+                    <span *ngIf="fieldErrors('password').required">Password is required</span>
+                    <span *ngIf="fieldErrors('password').maxlength || fieldErrors('password').minlength">
+                        Length of password must be from 4 to 20
+                    </span>
+                    <span *ngIf="fieldErrors('password').pattern && !(fieldErrors('password').maxlength || fieldErrors('password').minlength)">
+                        Your password must contain at least one number, uppercase and lowercase letter.
+                        Also use only latin letters, numbers and underscore
+                    </span>
+                </div>
+            </div>
+
+            <div class="m-4 p-fluid">
+                <span class="p-float-label m-2">
+                    <input id="repeated_password" type="password" pInputText name="repeatedPassword" maxlength="20"
+                           formControlName="repeatedPassword" [(ngModel)]="repeatedPassword">
+                    <label for="repeated_password">Repeat password</label>
+                </span>
+                <div class="p-message-error text-danger h6"
+                     *ngIf="repeatedPasswordMatch() && registerForm.controls['repeatedPassword'].dirty">
+                    <span>Passwords don't match</span>
+                </div>
+            </div>
+
+            <button pButton (click)="onSignUpClick()" [disabled]="hasFormErrors() || repeatedPasswordMatch()"
+                    label="Sign up"
+                    class="p-button-help font-weight-bold text-dark m-2 w-50"></button>
+
+            <button pButton label="Sign in" routerLink="/login"
+                    class="p-button-help font-weight-bold text-dark m-2 w-50"></button>
+
+            <div class="p-message-error text-danger h5 mt-2" *ngIf="isUsernameExists">
+                <span>This username already taken</span>
+            </div>
+        </form>
+    </div>
+</div>

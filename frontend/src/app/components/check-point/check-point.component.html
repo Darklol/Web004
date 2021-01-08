@@ -1,0 +1,101 @@
+<div class="container mt-3">
+    <div class="row w-100 justify-content-center">
+        <div class="form border border-light rounded col-lg-5 text-center p-4 mx-5 my-3">
+            <form class="data-form" [formGroup]="dataForm">
+                <div>X value</div>
+                <div class="x-value m-2">
+                    <p-radioButton class="m-2" name="xValue" formControlName="xValue" value="-3"
+                                   label="-3" [(ngModel)]="x"></p-radioButton>
+                    <p-radioButton class="m-2" name="xValue" formControlName="xValue" value="-2"
+                                   label="-2" [(ngModel)]="x"></p-radioButton>
+                    <p-radioButton class="m-2" name="xValue" formControlName="xValue" value="-1"
+                                   label="-1" [(ngModel)]="x"></p-radioButton>
+                    <p-radioButton class="m-2" name="xValue" formControlName="xValue" value="0"
+                                   label="0" [(ngModel)]="x"></p-radioButton>
+                    <p-radioButton class="m-2" name="xValue" formControlName="xValue" value="1"
+                                   label="1" [(ngModel)]="x"></p-radioButton>
+                    <p-radioButton class="m-2" name="xValue" formControlName="xValue" value="2"
+                                   label="2" [(ngModel)]="x"></p-radioButton>
+                    <p-radioButton class="m-2" name="xValue" formControlName="xValue" value="3"
+                                   label="3" [(ngModel)]="x"></p-radioButton>
+                    <p-radioButton class="m-2" name="xValue" formControlName="xValue" value="4"
+                                   label="4" [(ngModel)]="x"></p-radioButton>
+                    <p-radioButton class="m-2" name="xValue" formControlName="xValue" value="5"
+                                   label="5" [(ngModel)]="x"></p-radioButton>
+                </div>
+
+                <div class="mt-3">Y value</div>
+                <div class="y-value m-2 p-fluid">
+                    <span class="p-float-label m-2">
+                        <input id="yValue" formControlName="yValue" type="text" pInputText name="y-group"
+                               aria-describedby="y-help" maxlength="15" [(ngModel)]="y">
+                        <label for="yValue">Value in [-3..3]</label>
+                    </span>
+                    <div class="p-message-error text-danger h6" *ngIf="fieldErrors('yValue')">
+                        <span *ngIf="fieldErrors('yValue').required">Y is required</span>
+                        <span *ngIf="fieldErrors('yValue').max || fieldErrors('yValue').min
+                        || fieldErrors('yValue').pattern">Y must be number in [-3..3]</span>
+                    </div>
+                </div>
+
+                <div class="mt-3">R value</div>
+                <div class="r-value m-2">
+                    <p-radioButton class="m-2" name="rValue" formControlName="rValue" label="1"
+                                   value="1" [(ngModel)]="r" (click)="onRRadioClick()"></p-radioButton>
+                    <p-radioButton class="m-2" name="rValue" formControlName="rValue" label="2"
+                                   value="2" [(ngModel)]="r" (click)="onRRadioClick()"></p-radioButton>
+                    <p-radioButton class="m-2" name="rValue" formControlName="rValue" label="3"
+                                   value="3" [(ngModel)]="r" (click)="onRRadioClick()"></p-radioButton>
+                    <p-radioButton class="m-2" name="rValue" formControlName="rValue" label="4"
+                                   value="4" [(ngModel)]="r" (click)="onRRadioClick()"></p-radioButton>
+                    <p-radioButton class="m-2" name="rValue" formControlName="rValue" label="5"
+                                   value="5" [(ngModel)]="r" (click)="onRRadioClick()"></p-radioButton>
+                </div>
+                <div class="p-message-error text-danger h6"
+                     [style.display]="isRSelected || r!==undefined ? 'none' : 'block'">
+                    Select R value before click on the plot
+                </div>
+
+                <div class="control-buttons m-2">
+                    <button pButton label="Submit" class="p-button-help text-light m-2"
+                            (click)="onSubmitClick()" [disabled]="hasFormErrors()"></button>
+                    <button pButton label="Clear form" class="p-button-help text-light m-2"
+                            (click)="onClearFormClick()"></button>
+                </div>
+            </form>
+        </div>
+
+        <div class="graphics border border-light rounded col-lg-5 text-center p-5 mx-4 my-3">
+            <svg (click)="onPlotClick($event)" #plot xmlns="http://www.w3.org/2000/svg" width="300" height="300">
+
+                <!-- draw axis - -->
+                <line x1="0" y1="150" x2="300" y2="150" stroke="#fff"></line>
+                <line x1="150" y1="0" x2="150" y2="300" stroke="#fff"></line>
+                <polygon points="300,150 295,145 295,155" fill="#fff"></polygon>
+                <polygon points="150,0 145,5 155,5" fill="#fff"></polygon>
+                <line x1="270" y1="155" x2="270" y2="145" stroke="#fff"></line>
+                <text x="265" y="140" class="axis-text" stroke="#fff">R</text>
+                <line x1="210" y1="155" x2="210" y2="145" stroke="#fff"></line>
+                <text x="200" y="140" class="axis-text" stroke="#fff">R/2</text>
+                <line x1="90" y1="155" x2="90" y2="145" stroke="#fff"></line>
+                <text x="75" y="140" class="axis-text" stroke="#fff">-R/2</text>
+                <line x1="30" y1="155" x2="30" y2="145" stroke="#fff"></line>
+                <text x="23" y="140" class="axis-text" stroke="#fff">-R</text>
+                <line x1="145" y1="30" x2="155" y2="30" stroke="#fff"></line>
+                <text x="157" y="35" class="axis-text" stroke="#fff">R</text>
+                <line x1="145" y1="90" x2="155" y2="90" stroke="#fff"></line>
+                <text x="157" y="95" class="axis-text" stroke="#fff">R/2</text>
+                <line x1="145" y1="210" x2="155" y2="210" stroke="#fff"></line>
+                <text x="157" y="215" class="axis-text" stroke="#fff">-R/2</text>
+                <line x1="145" y1="270" x2="155" y2="270" stroke="#fff"></line>
+                <text x="157" y="275" class="axis-text" stroke="#fff">-R</text>
+
+                <!-- draw figures - -->
+                <polygon points="90,150 150,90 150,150" fill="#00f" stroke="#fff" fill-opacity="0.5"></polygon>
+                <rect height="60" width="120" x="150" y="90" fill-opacity="0.5" fill="#a0f" stroke="#fff"></rect>
+                <path fill="#c80" stroke="#fff" d="M 90,150 L 150,150 L 150,210 A 60,60 0 0 1 90,150"
+                      fill-opacity="0.5"></path>
+            </svg>
+        </div>
+    </div>
+</div>

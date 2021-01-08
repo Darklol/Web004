@@ -1,2 +1,3 @@
-/lib/
 /.idea/
+/frontend/node_modules/
+/lib/

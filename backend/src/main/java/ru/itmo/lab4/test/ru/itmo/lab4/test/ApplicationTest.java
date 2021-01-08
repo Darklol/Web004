@@ -1,4 +1,4 @@
-package ru.itmo.lab4.test;
+package ru.itmo.lab4.test.ru.itmo.lab4.test;
 
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

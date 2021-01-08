@@ -1,0 +1,15 @@
+<p-sidebar [(visible)]="isVisibleSideBar" position="left" styleClass="p-sidebar-sm">
+    <div class="text-center mx-5 my-3">
+        <i class="pi pi-user" style="font-size: 2em"></i>
+        <div class="m-2">Current user:</div>
+        <div class="m-2">{{currentUser.login}}</div>
+        <button pButton (click)="onLogOutClick()" label="Log out"></button>
+    </div>
+</p-sidebar>
+<div class="text-left m-2" style="float: left">
+    <button pButton (click)="isVisibleSideBar = true" icon="pi pi-user"></button>
+</div>
+<div *ngIf="points !== undefined">
+    <app-check-point (onSendNewPoint)="onSendNewPoint()" [points]="points"></app-check-point>
+    <app-history [points]="points"></app-history>
+</div>

@@ -1,0 +1,20 @@
+@media (min-width: 550px) {
+    .form {
+        width: 75%;
+    }
+}
+
+@media (min-width: 750px) {
+    .form {
+        width: 50%;
+    }
+}
+
+.form-header {
+    margin: 15% 0 2%;
+}
+
+.form {
+    margin: 0 auto;
+    background: darkslategrey
+}

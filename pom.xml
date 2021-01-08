@@ -8,10 +8,10 @@
         <version>2.3.5.RELEASE</version>
         <relativePath/>
     </parent>
-    <groupId>ru.itmo.angry.beavers</groupId>
-    <artifactId>weblab4</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>WebLab4</name>
+    <groupId>ru.itmo.international</groupId>
+    <artifactId>Web004</artifactId>
+    <version>0.0.0.0.0.1</version>
+    <name>Web004</name>
     <description>Web lab work 4!</description>
     <packaging>war</packaging>
 
