@@ -2,9 +2,9 @@ import {User} from '../models/User';
 
 export class NetworkUtil {
 
-    static REGISTER_URL: string = 'http://localhost:4530/register';
-    static USERS_URL: string = 'http://localhost:4530/api/users/';
-    static LOGIN_URL: string = 'http://localhost:4530/login';
+    static REGISTER_URL: string = 'http://localhost:1498/register';
+    static USERS_URL: string = 'http://localhost:1498/api/users/';
+    static LOGIN_URL: string = 'http://localhost:1498/login';
 
     static clearStorage(): void {
         localStorage.clear();
